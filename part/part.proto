@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+option go_package = "ramil.info/gisauto-task/part";
+package part;
+
+service PartCrudService {
+    rpc CreateParts(CreatePartReq) returns (CreatePartRes);
+    rpc ReadPart(ReadPartReq) returns (ReadPartRes);
+    rpc UpdatePart(UpdatePartReq) returns (UpdatePartRes);
+    rpc DeletePart(DeletePartReq) returns (DeletePartRes);
+}
+
+message CreatePartReq {
+  Part Part = 1; // Part id blank
+}
+
+message CreatePartRes {
+  Part Part = 1; // Part id filled in
+}
+
+message UpdatePartReq {
+  Part Part = 1;
+}
+
+message UpdatePartRes {
+  Part Part = 1;
+}
+
+message ReadPartReq {
+  int32 id = 1;
+}
+
+message ReadPartRes {
+  Part Part = 1;
+}
+
+message DeletePartReq {
+  int32 id = 1;
+}
+
+message DeletePartRes {
+  bool success = 1;
+}
+
+message Part {
+    int32 id = 1;  // Unique ID
+    int32 manufacturer_id = 2;
+    string vendor_code = 3;
+}
+

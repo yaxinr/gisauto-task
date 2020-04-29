@@ -1,0 +1,27 @@
+version: '3.1'
+
+services:
+    db:
+        image: postgres:9.6.17-alpine
+        container_name: postgresdb
+        restart: always
+        ports:
+            - 5434:5432
+        environment:
+            POSTGRES_USER: gisauto
+            POSTGRES_PASSWORD: gisauto
+            POSTGRES_DB: gisauto
+        # volumes:
+        #     - db-data:/var/lib/postgresql/data
+    gisauto:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        environment:
+            DATABASE_URL: postgres://gisauto:gisauto@postgresdb/gisauto?sslmode=disable&connect_timeout=30
+        ports:
+            - 50052:50051
+        restart: always
+    #     image: gisauto
+# volumes:
+#     db-data: ./gis_auto
