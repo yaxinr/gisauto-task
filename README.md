@@ -1,6 +1,6 @@
 Выполнить в командной строке
 ```
-git clone ...
+git clone https://github.com/yaxinr/gisauto-task.git
 cd gisauto-task
 docker-compose up -d
 ```
